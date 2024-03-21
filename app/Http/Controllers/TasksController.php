@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class taskscontroller extends Controller
@@ -13,6 +14,9 @@ class taskscontroller extends Controller
         return view('tasks.create');
     }
     public function store(){
-        return request()->all();
+        $task = Task::create([
+           'description'=> request('description') 
+        ]);
+        return dd($task);
     }
 }
