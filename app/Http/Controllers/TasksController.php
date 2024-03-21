@@ -7,16 +7,31 @@ use Illuminate\Http\Request;
 
 class taskscontroller extends Controller
 {
-    public function index(){
-        return view('tasks.index');
-}
-    public function create(){
+    public function index()
+    {
+        $tasks = Task::orderBy('completed_at')
+            ->orderBy('id', 'DESC')
+            ->get();
+        return view('tasks.index', [
+            'tasks' => $tasks,
+        ]);
+    }
+    public function create()
+    {
         return view('tasks.create');
     }
-    public function store(){
-        $task = Task::create([
-           'description'=> request('description') 
+    public function store()
+    {
+        Task::create([
+            'description' => request('description')
         ]);
-        return dd($task);
+        return redirect('/');
+    }
+    public function update($id){
+       $task = Task::where('id', $id)->first();
+       $task->completed_at = now();
+       $task->save();
+
+       return redirect('/');
     }
 }
