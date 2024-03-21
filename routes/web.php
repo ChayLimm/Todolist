@@ -18,4 +18,4 @@ Route::get('/', [TasksController::class, 'index']); // Assuming 'index' is the m
 
 Route::get('/tasks/create',[Taskscontroller::class, 'create']);
 
-Route::post('/tasks',[TasksController::Class,'store']);
+Route::post('/tasks',[TasksController::class,'store']);
