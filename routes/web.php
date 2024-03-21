@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TasksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('tasks.index');
-});
+Route::get('/', [TasksController::class, 'index']); // Assuming 'index' is the method you want to call in TasksController
 
-Route::get('/tasks/create', function(){
-    return view('tasks.create');
-});
-                              
+Route::get('/tasks/create',[Taskscontroller::class, 'create']);
+
+Route::post('/tasks',[TasksController::Class,'store']);
