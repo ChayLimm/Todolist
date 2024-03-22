@@ -16,4 +16,7 @@ class Task extends Model
     public function iscompleted(){
         return $this->completed_at != null;
     }
+    public function notcomplete(){
+        return $this->completed_at = null;
+    }
 }
